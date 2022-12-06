@@ -9,6 +9,11 @@ export class TitulosService {
     constructor(@InjectRepository(TituloRepository)
     private tituloRepository: TituloRepository,
     ) {}
+    
+    async receberTitulosDto() {
+        const titulos = this.tituloRepository.receberTitulos();
+        return titulos;
+    }
 
     async adicionarTituloDto(adicionarTituloDto:AdicionarTituloDto):Promise<Titulo> {
         return this.tituloRepository.adicionarTituloDto(adicionarTituloDto);

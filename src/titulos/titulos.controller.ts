@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { AdicionarTituloDto } from './dto/adicionar-titulo.dto';
 import { RetornaTituloDto } from './dto/retorna-titulo.dto';
 import { TitulosService } from './titulos.service';
@@ -18,5 +18,10 @@ export class TitulosController {
             ano: titulo.ano,
             message: 'Titulo cadastrado com sucesso',
         }
+    }
+
+    @Get()
+    async receberTitulos(){
+        const titulos = await this.titulosService.receberTitulosDto();
     }
 }

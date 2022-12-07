@@ -1,6 +1,7 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { AdicionarTituloDto } from './dto/adicionar-titulo.dto';
 import { RetornaTituloDto } from './dto/retorna-titulo.dto';
+import { Titulo } from './titulo.entity';
 import { TitulosService } from './titulos.service';
 
 @Controller('titulos')
@@ -16,12 +17,14 @@ export class TitulosController {
         return {
             nome: titulo.nome,
             ano: titulo.ano,
+            tipo: titulo.tipo,
             message: 'Titulo cadastrado com sucesso',
         }
     }
 
     @Get()
-    async receberTitulos(){
+    async receberTitulos() : Promise<Titulo[]> {
         const titulos = await this.titulosService.receberTitulosDto();
+        return titulos;
     }
 }

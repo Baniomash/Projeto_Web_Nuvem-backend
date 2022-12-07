@@ -3,8 +3,11 @@ import { TitulosService } from './titulos.service';
 import { TitulosController } from './titulos.controller';
 import { TituloRepository } from './titulo.repository';
 
+import { TypeOrmExModule } from 'src/typeorm-ex.module';
+
 @Module({
-  providers: [TitulosService, TituloRepository],
-  controllers: [TitulosController]
+  imports: [TypeOrmExModule.forCustomRepository([TituloRepository])],
+  providers: [TitulosService],
+  controllers: [TitulosController],
 })
 export class TitulosModule {}

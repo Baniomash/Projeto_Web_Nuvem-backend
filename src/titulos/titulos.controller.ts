@@ -4,7 +4,7 @@ import { RetornaTituloDto } from './dto/retorna-titulo.dto';
 import { Titulo } from './titulo.entity';
 import { TitulosService } from './titulos.service';
 
-@Controller('titulos')
+@Controller('titulos/')
 export class TitulosController {
     constructor(private titulosService: TitulosService){}
 
@@ -25,6 +25,12 @@ export class TitulosController {
     @Get()
     async receberTitulos() : Promise<Titulo[]> {
         const titulos = await this.titulosService.receberTitulosDto();
+        return titulos;
+    }
+
+    @Get('estaduais/')
+    async receberTitulosEstaduais() : Promise<Titulo[]> {
+        const titulos = await this.titulosService.receberTitulosEstaduais();
         return titulos;
     }
 }

@@ -7,8 +7,12 @@ import { Titulo } from "./titulo.entity";
 
 @CustomRepository(Titulo)
 export class TituloRepository extends Repository<Titulo> {
+    async receberTitulosEstaduais() {
+        const titulos = await this.find({where: {tipo: "Estadual"}});
+        return titulos;
+    }
     async receberTitulos(): Promise<Titulo[]> {
-        const titulos = this.find();
+        const titulos = await this.find();
         return titulos;
     }
     async adicionarTituloDto(

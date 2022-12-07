@@ -10,9 +10,12 @@ export class TitulosService {
     private tituloRepository: TituloRepository,
     ) {}
     
+    async receberTitulosEstaduais() {
+        const titulos = await this.tituloRepository.receberTitulosEstaduais();
+        return titulos;
+    }
     async receberTitulosDto():Promise<Titulo[]> {
         const titulos = await this.tituloRepository.receberTitulos();
-        console.log(titulos);
         if(titulos.length === 0){
             return await this.adicionaTodosTitulos();
         } else {
@@ -29,12 +32,9 @@ export class TitulosService {
                                               ];
 
         for(var i = 0; i < titulos.length; i++) {
-            this.adicionarTituloDto(titulos[i]);
+            await this.adicionarTituloDto(titulos[i]);
         }
 
-        return this.receberTitulosDto();
-    }
-    criarTitulo(nome:string, ano:number, tipo:string){
-        return {nome: nome, ano: ano, tipo: tipo};
+        return await this.receberTitulosDto();
     }
 }

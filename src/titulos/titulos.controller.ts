@@ -33,4 +33,16 @@ export class TitulosController {
         const titulos = await this.titulosService.receberTitulosEstaduais();
         return titulos;
     }
+
+    @Get('nacionais/')
+    async receberTitulosNacionais() : Promise<Titulo[]> {
+        const titulos = await this.titulosService.receberTitulosNacionais();
+        return titulos;
+    }
+
+    @Get('internacionais/')
+    async receberTitulosInternacionais() : Promise<Titulo[]> {
+        const titulos = await this.titulosService.receberTitulosInternacionais();
+        return titulos;
+    }
 }
